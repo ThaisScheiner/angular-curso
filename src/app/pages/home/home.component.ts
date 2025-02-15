@@ -1,4 +1,6 @@
-import { Component, DoCheck } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-home',
@@ -6,8 +8,14 @@ import { Component, DoCheck } from '@angular/core';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent implements DoCheck{
+export class HomeComponent {
  
+  user: User | undefined;
+  constructor(private userService: UserService){
+    this.user = userService.getUser();
+  }
+
+  
   /*
     implementa o metodo destruir do appComponent.ts
     
@@ -15,9 +23,7 @@ export class HomeComponent implements DoCheck{
     console.log('destruiu');
   }
 
-   */
-
-  num: number = 1;
+   num: number = 1;
 
   ngDoCheck(){
     console.log('DoCheck = Detecta qualquer tipo de mudança no componente');
@@ -26,5 +32,9 @@ export class HomeComponent implements DoCheck{
   adiciona1(){
     this.num++;
   }
+
+   */
+
+ 
 
 }

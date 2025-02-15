@@ -4,6 +4,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { UserCardComponent } from '../../components/user-card/user-card.component';
 import { User } from '../../models/user';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-users',
@@ -20,7 +21,7 @@ export class UsersComponent implements OnInit {
   userSelecionado: User | undefined;
   userForm: FormGroup = new FormGroup({});
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private userService: UserService) {}
   
   ngOnInit(): void {
     this.initilizeForm();
@@ -62,6 +63,7 @@ export class UsersComponent implements OnInit {
 
   infoUserSelecionado(user: User){
     this.userSelecionado = user;
+    this.userService.setUser(user); //usuario disponivel para qualquer local da aplicação
   }
   
 
